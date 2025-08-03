@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaxik FF - Лучшие софты в СНГ</title>
+  <meta name="description" content="Shaxik FF предлагает лучшие софты для iOS и ПК в СНГ. Aimdrag, Holograma и многое другое с более чем 150 отзывами!">
+  <meta name="keywords" content="Shaxik FF, софты, iOS, ПК, Aimdrag, Holograma, Telegram, СНГ">
+  <meta property="og:title" content="Shaxik FF - Лучшие софты в СНГ">
+  <meta property="og:description" content="Присоединяйтесь к Shaxik FF для топовых софтов на iOS и ПК. Более 150 отзывов!">
+  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <style>
+    :root {
+      --primary-color: #ff4444;
+      --bg-color: #000;
+      --text-color: #fff;
+      --accent-color: rgba(255, 255, 255, 0.1);
+      --shadow-color: rgba(255, 68, 68, 0.8);
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f0f0f0;
+      --text-color: #333;
+      --accent-color: rgba(0, 0, 0, 0.1);
+      --shadow-color: rgba(255, 68, 68, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    /* Hacker-Style Matrix Background Animation */
+    canvas#matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .blocked {
+      display: none;
+    }
+
+    .vpn-message {
+      text-align: center;
+      padding: 50px;
+      font-size: 1.5em;
+      color: var(--primary-color);
+    }
+
+    header {
+      position: relative;
+      background: var(--bg-color);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Avatar with RGB Border and Click Animation */
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar.clicked {
+      animation: rotate360 1s ease-in-out;
+    }
+
+    .avatar.clicked::before {
+      background: linear-gradient(270deg, purple, pink, blue, purple);
+      background-size: 1400% 1400%;
+      animation: rainbowBorderAlt 10s linear infinite;
+    }
+
+    @keyframes rotate360 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 1400% 1400%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      animation: rainbowBorder 10s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rainbowBorder {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 1400% 50%; }
+    }
+
+    @keyframes rainbowBorderAlt {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 1400% 50%; }
+    }
+
+    /* 3D Nickname Animation */
+    .nickname {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2em, 5vw, 3em);
+      color: var(--primary-color);
+      text-align: center;
+      margin: 0;
+      text-transform: uppercase;
+      position: relative;
+      animation: glow 2s ease-in-out infinite alternate;
+      transform-style: preserve-3d;
+      transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
+      text-shadow: 
+        0 0 10px var(--primary-color),
+        0 0 20px var(--primary-color),
+        0 0 30px rgba(255, 68, 68, 0.5),
+        0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 
+          0 0 10px var(--primary-color),
+          0 0 20px var(--primary-color),
+          0 0 30px rgba(255, 68, 68, 0.5),
+          0 2px 5px rgba(0, 0, 0, 0.5);
+        transform: perspective(1000px) rotateX(10deg) rotateY(10deg) translateZ(0);
+      }
+      to {
+        text-shadow: 
+          0 0 20px var(--primary-color),
+          0 0 30px var(--primary-color),
+          0 0 40px rgba(255, 68, 68, 0.8),
+          0 4px 10px rgba(0, 0, 0, 0.7);
+        transform: perspective(1000px) rotateX(15deg) rotateY(15deg) translateZ(10px);
+      }
+    }
+
+    p.subtitle {
+      font-weight: 300;
+      opacity: 0.7;
+      margin: 20px 0 40px;
+      text-align: center;
+      font-size: clamp(1em, 3vw, 1.2em);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1em;
+      color: var(--text-color);
+      transition: background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+
+    .social-button {
+      position: relative;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1em;
+      color: var(--text-color);
+      text-decoration: none;
+      background: var(--accent-color);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+      overflow: hidden;
+      box-shadow: 0 0 10px var(--shadow-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--primary-color);
+      box-shadow: 0 0 20px var(--shadow-color);
+      transform: translateY(-2px);
+    }
+
+    .social-button::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 28px;
+      padding: 2px;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 1400% 1400%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      animation: rainbowBorder 10s linear infinite;
+      pointer-events: none;
+    }
+
+    .emoji {
+      font-size: 1.2em;
+      filter: drop-shadow(0 0 5px var(--primary-color));
+      transition: transform 0.3s ease;
+    }
+
+    .social-button:hover .emoji {
+      transform: scale(1.2);
+    }
+
+    .pricing {
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    .pricing h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8em, 4vw, 2.4em);
+      margin-bottom: 30px;
+      color: var(--primary-color);
+      text-align: center;
+    }
+
+    details.pricing-item {
+      background: var(--accent-color);
+      border-radius: 12px;
+      padding: 15px 25px;
+      margin-bottom: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    details.pricing-item:hover {
+      transform: scale(1.02);
+    }
+
+    details summary {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.2em, 3vw, 1.4em);
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      margin-bottom: 12px;
+      animation: rainbowText 6s linear infinite;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    details p {
+      font-weight: 300;
+      line-height: 1.4;
+      padding-left: 10px;
+      animation: rainbowText 6s linear infinite;
+    }
+
+    .pricing-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: block;
+      box-shadow: 0 0 10px var(--shadow-color);
+    }
+
+    .pricing-item .emoji {
+      font-size: 1em;
+    }
+
+    @keyframes rainbowText {
+      0% { color: #ff0000; }
+      16% { color: #ffa500; }
+      33% { color: #ffff00; }
+      50% { color: #00ff00; }
+      66% { color: #00ffff; }
+      83% { color: #0000ff; }
+      100% { color: #ff00ff; }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    .cta-button {
+      display: block;
+      margin: 20px auto;
+      padding: 15px 40px;
+      background: var(--primary-color);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2em;
+      border-radius: 25px;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: #ff6666;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      header {
+        padding: 15px 0;
+        margin-bottom: 15px;
+      }
+
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+
+      .pricing {
+        padding: 0 10px;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+      }
+
+      .nickname {
+        font-size: clamp(1.5em, 4vw, 2em);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix Background Canvas -->
+  <canvas id="matrix-bg"></canvas>
+
+  <div class="vpn-message" style="display: none;">
+    <p>Доступ запрещен: использование VPN не допускается.</p>
+    <p>Access denied: VPN usage is not allowed.</p>
+  </div>
+  <div class="content" id="content">
+    <header>
+      <div class="avatar" onclick="this.classList.add('clicked'); setTimeout(() => this.classList.remove('clicked'), 1000)">
+        <img src="https://i.ibb.co/B5245LZn/IMG-1287.jpg" alt="Shaxik FF Avatar" loading="lazy">
+      </div>
+      <h1 class="nickname" data-translate="title">Shaxik FF</h1>
+      <p class="subtitle" data-translate="subtitle">Лучшие софты в СНГ! Более 150 отзывов <span class="emoji">⭐</span></p>
+      <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <div class="social-buttons">
+      <a href="https://t.me/shaxiktt" class="social-button" target="_blank" rel="noopener noreferrer" data-translate="telegram_channel"><span class="emoji">📢</span> Telegram канал</a>
+      <a href="https://t.me/s7evx" class="social-button" target="_blank" rel="noopener noreferrer" data-translate="contact"><span class="emoji">💬</span> Связь со мной</a>
+      <a href="https://youtube.com/@shaxikff?si=x6uczp_RUJSvtwkX" class="social-button" target="_blank" rel="noopener noreferrer" data-translate="youtube"><span class="emoji">▶️</span> YouTube</a>
+    </div>
+
+    <section class="pricing">
+      <h2 data-translate="pricing_title">Цены на софты <span class="emoji">💻</span></h2>
+      <details class="pricing-item" open>
+        <summary data-translate="pricing_item_1_title"><span class="emoji">🎯</span> Софт на iPhone (iOS 14-16.1.2) - 500₽</summary>
+        <p data-translate="pricing_item_1_desc">90% в голову<br>Функции: Aimdrag + Holograma</p>
+        <img src="https://i.ibb.co/jP68phqn/IMG-1420.jpg" alt="iOS 14-16.1.2 Software Preview" loading="lazy">
+      </details>
+      <details class="pricing-item">
+        <summary data-translate="pricing_item_2_title"><span class="emoji">🛠️</span> Софт на все версии iOS - 600₽</summary>
+        <p data-translate="pricing_item_2_desc">Требуется ПК для установки<br>Функция: Простой аимдраг (95% в голову)</p>
+      </details>
+      <details class="pricing-item">
+        <summary data-translate="pricing_item_3_title"><span class="emoji">💾</span> Панелька на ПК</summary>
+        <p data-translate="pricing_item_3_desc">Месяц - 350₽<br>Навсегда - 800₽</p>
+        <img src="https://i.ibb.co/ymgSkC74/IMG-1431.jpg" alt="PC Panel Preview" loading="lazy">
+      </details>
+      <a href="https://t.me/s7evx" class="cta-button" target="_blank" rel="noopener noreferrer" data-translate="buy_now">Купить сейчас!</a>
+    </section>
+
+    <footer>
+      <p><a href="https://t.me/+TFvLB5GyWpw0NGNi" target="_blank" rel="noopener noreferrer" data-translate="reviews">Отзывы</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Matrix Background Animation
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    const chars = '010101ハッカーコード';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0F0';
+      ctx.font = fontSize + 'px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 33);
+    window.addEventListener('resize', () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+
+    // Translations
+    const translations = {
+      ru: {
+        title: "Shaxik FF",
+        subtitle: "Лучшие софты в СНГ! Более 150 отзывов",
+        telegram_channel: "Telegram канал",
+        contact: "Связь со мной",
+        youtube: "YouTube",
+        pricing_title: "Цены на софты",
+        pricing_item_1_title: "Софт на iPhone (iOS 14-16.1.2) - 500₽",
+        pricing_item_1_desc: "90% в голову<br>Функции: Aimdrag + Holograma",
+        pricing_item_2_title: "Софт на все версии iOS - 600₽",
+        pricing_item_2_desc: "Требуется ПК для установки<br>Функция: Простой аимдраг (95% в голову)",
+        pricing_item_3_title: "Панелька на ПК",
+        pricing_item_3_desc: "Месяц - 350₽<br>Навсегда - 800₽",
+        buy_now: "Купить сейчас!",
+        reviews: "Отзывы"
+      },
+      en: {
+        title: "Shaxik FF",
+        subtitle: "Top Software in the CIS! Over 150 Reviews",
+        telegram_channel: "Telegram Channel",
+        contact: "Contact Me",
+        youtube: "YouTube",
+        pricing_title: "Software Prices",
+        pricing_item_1_title: "iPhone Software (iOS 14-16.1.2) - 500₽",
+        pricing_item_1_desc: "90% Headshots<br>Features: Aimdrag + Holograma",
+        pricing_item_2_title: "Software for All iOS Versions - 600₽",
+        pricing_item_2_desc: "Requires PC for Installation<br>Feature: Simple Aimdrag (95% Headshots)",
+        pricing_item_3_title: "PC Panel",
+        pricing_item_3_desc: "Month - 350₽<br>Forever - 800₽",
+        buy_now: "Buy Now!",
+        reviews: "Reviews"
+      }
+    };
+
+    // Language detection
+    const userLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.innerHTML = translations[lang][key] || element.innerHTML;
+      });
+      document.documentElement.lang = lang;
+    }
+    applyTranslations(userLang);
+
+    // Theme toggle
+    const toggleButton = document.querySelector('.theme-toggle');
+    toggleButton.addEventListener('click', () => {
+      document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      toggleButton.textContent = document.documentElement.dataset.theme === 'light' ? '🌙' : '☀️';
+    });
+
+    // Anti-VPN check
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        if (data.vpn || data.proxy) {
+          document.querySelector('.content').classList.add('blocked');
+          document.querySelector('.vpn-message').style.display = 'block';
+        }
+      })
+      .catch(error => {
+        console.error('VPN check failed:', error);
+        // Fallback: Allow access if API fails
+      });
+  </script>
+</body>
+</html>
